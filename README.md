@@ -29,10 +29,10 @@ for your OS below).
 powershell -ExecutionPolicy Bypass -File install-windows.ps1
 ```
 
-Runs for **both Firefox and Chrome/Edge/Brave**. On Linux/Mac run it as
-`./install.sh` (dot-slash), **not** with `sudo`. The installer asks for
-your Chrome extension ID — press Enter to accept this build's default
-(`plgfggbkknfkbpifhniejffmgilnjkgp`).
+Runs for **both Firefox and Chrome/Edge/Brave**, with no prompts — it
+already knows this build's Chrome ID
+(`plgfggbkknfkbpifhniejffmgilnjkgp`). On Linux/Mac run it as
+`./install.sh` (dot-slash), **not** with `sudo`.
 
 Then fully quit and reopen your browser and open the extension. The engine label in the
 form's sidebar should read **local XeLaTeX** after the first build.

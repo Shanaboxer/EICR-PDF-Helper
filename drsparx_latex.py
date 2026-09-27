@@ -1,4 +1,4 @@
-#!/home/lee/miniconda3/bin/python3
+#!/usr/bin/python3
 """DrSparX LaTeX native-messaging host.
 
 Firefox sends a JSON message asking us to compile a LaTeX job; we run the

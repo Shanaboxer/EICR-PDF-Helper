@@ -37,15 +37,12 @@ sed -i.bak "1s|.*|#!$PY|" "$SCRIPT" && rm -f "$SCRIPT.bak"
 
 OS="$(uname -s)"
 
-# --- work out the Chrome extension ID to authorise ---
+# --- Chrome extension ID to authorise ---
+# This build ships with a fixed Chrome ID (from the manifest key), so no prompt
+# is needed. Advanced users can override it with:  DRSPARX_CHROME_ID=... ./install.sh
+CHROME_ID="${DRSPARX_CHROME_ID:-$CHROME_ID_DEFAULT}"
 echo
-echo "Chrome/Chromium needs the extension's ID to trust the helper."
-echo "This build's fixed ID is: ${CHROME_ID_DEFAULT:-<unknown>}"
-echo "If yours differs (go to the browser's Extensions page, enable Developer"
-echo "mode, and read the ID under DrSparX Forms), type it now."
-printf "Chrome extension ID [%s]: " "$CHROME_ID_DEFAULT"
-read -r CHROME_ID || true
-CHROME_ID="${CHROME_ID:-$CHROME_ID_DEFAULT}"
+echo "Chrome extension ID: ${CHROME_ID:-<none>}"
 
 write_firefox_manifest() {
   local dir="$1"

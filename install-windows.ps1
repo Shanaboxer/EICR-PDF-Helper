@@ -21,13 +21,11 @@ if (-not $python) { throw "Python 3 not found on PATH. Install it and re-run." }
 $Bat = Join-Path $Here "drsparx_latex.bat"
 "@echo off`r`n`"$python`" `"$Script`" %*" | Set-Content -Encoding ASCII $Bat
 
+# This build ships with a fixed Chrome ID, so no prompt is needed. Advanced
+# users can override with:  $env:DRSPARX_CHROME_ID="..."; .\install-windows.ps1
+$ChromeId = if ($env:DRSPARX_CHROME_ID) { $env:DRSPARX_CHROME_ID } else { $ChromeIdDefault }
 Write-Host ""
-Write-Host "Chrome/Edge/Brave need the extension's ID to trust the helper."
-Write-Host "This build's fixed ID is: $ChromeIdDefault"
-Write-Host "If yours differs, open the browser's Extensions page, turn on"
-Write-Host "Developer mode, and read the ID under DrSparX Forms."
-$ChromeId = Read-Host "Chrome extension ID [$ChromeIdDefault]"
-if ([string]::IsNullOrWhiteSpace($ChromeId)) { $ChromeId = $ChromeIdDefault }
+Write-Host "Chrome extension ID: $ChromeId"
 
 # --- Firefox manifest (allowed_extensions) ---
 $FfManifest = Join-Path $Here "$HostName.firefox.json"
